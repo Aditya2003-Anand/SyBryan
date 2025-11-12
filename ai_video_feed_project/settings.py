@@ -161,3 +161,17 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 ### meta
+# configure email backend
+
+client_email = config('client_email')
+client_password = config('client_password')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = client_email
+EMAIL_HOST_PASSWORD = client_password
+DEFAULT_FROM_EMAIL = client_email
+
+
