@@ -29,7 +29,7 @@ The backend is built with ** REST Framework**, and it integrates with **Google C
 ## API Endpoints
 
 ### 1. Registration API
-**Endpoint:** `http://34.63.46.227/api/registration_api`  
+**Endpoint:** `http://127.0.0.1:800/api/registration_api`  
 **Method:** POST  
 **Payload:**
 ```json
