@@ -81,3 +81,34 @@ class WeeklySelection(models.Model):
     def __str__(self):
         return f"{self.media_type} for {self.week_start}: {self.content.id}"
 
+
+#####03Nov ScheduleContentDB
+class ScheduleContentDB(models.Model):
+    CONTENT_TYPE_CHOICES = [
+        ('post', 'post'),
+        ('reel', 'Reel'),
+    ]
+
+    PLATFORM_CHOICES = [
+        ('facebook', 'Facebook'),
+        ('instagram', 'Instagram'),
+    ]
+    STATUS_CHOICES = [
+        ('scheduled', 'Scheduled'),
+        ('published', 'Published'),
+        ('cancelled', 'Cancelled'),
+        ('failed', 'Failed')
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content_type = models.CharField(max_length=10, choices=CONTENT_TYPE_CHOICES)
+    file = models.CharField(blank=True, null=True)  # upload to GCS
+    platform = models.CharField(max_length=20, choices=PLATFORM_CHOICES)
+    caption = models.TextField(blank=True, null=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='scheduled')
+    date = models.DateField()
+    time = models.TimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.platform} | {self.content_type} | {self.date} {self.time}"
